@@ -87,7 +87,17 @@
 
 前提是您已安装 [Claude Code](https://claude.ai/code) 或使用了支持 [skills.sh](https://skills.sh) 协议的客户端。
 
-由于目前为本地仓库运行，请将 `skills/madugong-perspective` 文件夹加入您的工作流配置目录中，或直接在 Claude Code 内引用该路径。
+#### 推荐：一键远程安装
+
+最快的使用方式是直接通过 `npx` 安装该 Skill：
+
+```bash
+npx skills add Piracola/madugong-skill
+```
+
+#### 备选：本地运行安装
+
+如果您希望在本地仓库运行或进行二次开发，请将 `skills/madugong-perspective` 文件夹加入您的工作流配置目录中，或直接在 Claude Code 内引用该路径。
 
 ### 触发方式
 
