@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "madugong-perspective": {
+      "source": "Piracola/madugong-skill",
+      "sourceType": "github",
+      "computedHash": "610fbcf184b42659a7d4f46341ffd6f63d14e1825b08ae4788bef28864341561"
+    }
+  }
+}

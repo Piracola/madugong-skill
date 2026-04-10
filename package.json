@@ -1,7 +1,7 @@
 {
   "name": "madugong-skill",
-  "version": "1.0.0",
-  "description": "基于女娲框架蒸馏生成的「马督工（马前卒）」思维模型",
+  "version": "4.0.0",
+  "description": "马督工（马前卒/任冲昊）极致沉浸式思维复刻Skill",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,7 @@
   "keywords": [
     "claude-code",
     "skill",
-    "agent",
-    "nuwa"
+    "agent"
   ],
   "author": "",
   "license": "MIT"
