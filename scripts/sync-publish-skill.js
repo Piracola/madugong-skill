@@ -25,7 +25,7 @@ function copyEntry(relativePath) {
   fs.cpSync(sourcePath, targetPath, { recursive: true });
 }
 
-function main() {
+function syncPublishSkill() {
   ensureSourceExists(sourceRoot);
 
   fs.rmSync(publishRoot, { recursive: true, force: true });
@@ -40,4 +40,12 @@ function main() {
   console.log(`Synced flat publish package to ${publishRoot}`);
 }
 
-main();
+if (require.main === module) {
+  syncPublishSkill();
+}
+
+module.exports = {
+  repoRoot,
+  publishRoot,
+  syncPublishSkill,
+};
