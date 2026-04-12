@@ -4,7 +4,9 @@
   "description": "马督工（马前卒/任冲昊）极致沉浸式思维复刻Skill",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync:publish-skill": "node scripts/sync-publish-skill.js",
+    "prepare:publish": "npm run sync:publish-skill"
   },
   "keywords": [
     "claude-code",
