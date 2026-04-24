@@ -34,11 +34,12 @@ jobs:
       - name: Update release branch
         run: |
           TAG="${{ github.event.release.tag_name || 'manual' }}"
+          cp -r publish/madugong-perspective /tmp/madugong-release
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout release || git checkout --orphan release
           git rm -rf . || true
-          cp -r publish/madugong-perspective/* .
+          cp -r /tmp/madugong-release/* .
           git add -A
           git commit -m "release: $TAG"
           git push origin release --force
