@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sync:publish-skill": "node scripts/sync-publish-skill.js",
-    "prepare:publish": "npm run sync:publish-skill",
-    "prepare:release": "node scripts/prepare-release-branch.js"
+    "build:publish": "python scripts/publish.py"
   },
   "keywords": [
     "claude-code",
