@@ -21,7 +21,11 @@ function copyEntry(relativePath) {
   const sourcePath = path.join(sourceRoot, relativePath);
   const targetPath = path.join(publishRoot, relativePath);
 
-  ensureSourceExists(sourcePath);
+  if (!fs.existsSync(sourcePath)) {
+    console.log(`Skipping missing source: ${sourcePath}`);
+    return;
+  }
+  
   fs.cpSync(sourcePath, targetPath, { recursive: true });
 }
 
