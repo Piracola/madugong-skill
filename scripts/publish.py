@@ -48,8 +48,20 @@ def sync_skill_to_publish():
     print(f"Synced skill to {PUBLISH_DIR}")
 
 
+DISCLAIMER = (
+    "<!-- madugong-perspective -->\n"
+    "<!-- Paste this file into any AI chat to activate the Ma Dugong persona. -->\n"
+    "<!-- For Claude Code installation, use the release zip instead. -->\n"
+    "<!--\n"
+    "  免责声明：本文件为 AI 角色扮演提示词，基于马前卒（任冲昊）截至 2026 年 4 月的\n"
+    "  公开内容提炼，属于风格模拟，不是马前卒本人，不代表其本人观点，\n"
+    "  不保证结论的正确性和时效性。禁止用于冒充本人或商业化用途。\n"
+    "-->\n\n"
+)
+
+
 def merge_to_single_md():
-    """Merge SKILL.md + fewshots.md into a single madugong.md for release."""
+    """Merge SKILL.md + references + fewshots.md into a single madugong.md."""
     skill_md = SKILL_SOURCE / "SKILL.md"
     fewshots_md = SKILL_SOURCE / "fewshots.md"
 
@@ -60,16 +72,16 @@ def merge_to_single_md():
         print(f"Error: {fewshots_md} not found", file=sys.stderr)
         sys.exit(1)
 
-    skill_text = strip_frontmatter(skill_md.read_text(encoding="utf-8"))
-    fewshots_text = fewshots_md.read_text(encoding="utf-8")
+    parts = [strip_frontmatter(skill_md.read_text(encoding="utf-8"))]
 
-    merged = (
-        "<!-- madugong-perspective -->\n"
-        "<!-- Paste this file into any AI chat to activate the Ma Dugong persona. -->\n"
-        "<!-- For Claude Code installation, use the release zip instead. -->\n\n"
-        f"{skill_text}\n\n"
-        f"{fewshots_text}"
-    )
+    references_dir = SKILL_SOURCE / "references"
+    if references_dir.is_dir():
+        for ref in sorted(references_dir.glob("*.md")):
+            parts.append(strip_frontmatter(ref.read_text(encoding="utf-8")))
+
+    parts.append(fewshots_md.read_text(encoding="utf-8"))
+
+    merged = DISCLAIMER + "\n\n".join(part.strip("\n") for part in parts) + "\n"
 
     MERGED_OUTPUT.write_text(merged, encoding="utf-8")
     print(f"Merged to {MERGED_OUTPUT}")
